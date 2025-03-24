@@ -2,17 +2,14 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import { SDG_GOALS } from '@/lib/data';
-import { type SDGGoal } from '@/lib/types';
+import { ExternalLink } from 'lucide-react';
 
-interface SDGSelectorProps {
-  onSelect: (sdgId: number) => void;
-}
-
-export function SDGSelector({ onSelect }: SDGSelectorProps) {
-  const [selectedGoal, setSelectedGoal] = useState<SDGGoal | null>(null);
+export function SDGSelector({ onSelect }: { onSelect: (sdgId: number) => void }) {
+  const [selectedGoal, setSelectedGoal] = useState(SDG_GOALS[0]);
 
   const handleSelect = (value: string) => {
     const goal = SDG_GOALS.find(g => g.id === parseInt(value));
@@ -22,14 +19,13 @@ export function SDGSelector({ onSelect }: SDGSelectorProps) {
   };
 
   return (
-    <div className="max-w-3xl w-full mx-auto p-8">
-      <h1 className="text-5xl font-bold text-center mb-12">Choose</h1>
+    <div className="max-w-2xl mx-auto p-8 space-y-8">
+      <h2 className="text-3xl font-bold text-center mb-8">Choose Your Impact Area</h2>
       
-      <div className="flex items-center gap-4 mb-8">
-        <span className="text-xl text-gray-700">I want to explore projects in</span>
-        <Select onValueChange={handleSelect}>
-          <SelectTrigger className="w-[300px]">
-            <SelectValue placeholder="Choose an option..." />
+      <div className="space-y-6">
+        <Select onValueChange={handleSelect} defaultValue="1">
+          <SelectTrigger className="w-full text-lg">
+            <SelectValue placeholder="Select a Sustainable Development Goal" />
           </SelectTrigger>
           <SelectContent>
             {SDG_GOALS.map((goal) => (
@@ -39,48 +35,48 @@ export function SDGSelector({ onSelect }: SDGSelectorProps) {
             ))}
           </SelectContent>
         </Select>
-      </div>
 
-      {selectedGoal && (
-        <div className="animate-fade-in">
-          <div className="flex gap-8 items-start bg-white rounded-lg p-6 shadow-lg mb-8">
-            <div 
-              className="w-40 h-40 flex-shrink-0 rounded-lg"
-              style={{ backgroundColor: selectedGoal.color }}
-            >
-              <div className="p-8">
-                <Image
-                  src={`/sdg-icons/E-WEB-Goal-${selectedGoal.id.toString().padStart(2, '0')}.png`}
-                  alt={selectedGoal.name}
-                  width={200}
-                  height={200}
-                  className="w-full h-full object-contain"
-                />
-              </div>
+        <div className="bg-white rounded-xl p-8 shadow-lg transition-all duration-500 ease-in-out">
+          <div className="flex flex-col items-center space-y-6">
+            <div className="relative w-48 h-48 transition-transform duration-500 ease-in-out transform hover:scale-105">
+              <Image
+                src={`/sdg-icons/E-WEB-Goal-${String(selectedGoal.id).padStart(2, '0')}.png`}
+                alt={selectedGoal.name}
+                fill
+                className="object-contain transition-opacity duration-500"
+              />
             </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold mb-4">{selectedGoal.name}</h2>
-              <p className="text-gray-600 mb-2">{selectedGoal.description}</p>
-              <a 
-                href={`https://www.un.org/sustainabledevelopment/${selectedGoal.name.toLowerCase().replace(/\s+/g, '-')}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-blue-600 hover:underline"
-              >
-                Learn more about this goal
-              </a>
+            
+            <div className="text-center space-y-4 transition-all duration-500 ease-in-out">
+              <h3 className="text-2xl font-bold" style={{ color: selectedGoal.color }}>
+                {selectedGoal.name}
+              </h3>
+              <p className="text-gray-600 max-w-md">
+                {selectedGoal.description}
+                <Link 
+                  href={selectedGoal.unUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center ml-2 text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  <span className="ml-1">Learn more</span>
+                </Link>
+              </p>
             </div>
           </div>
+        </div>
 
+        <div className="flex justify-center pt-4">
           <Button
             size="lg"
-            className="w-full text-lg py-6 bg-[#FF6B6B] hover:bg-[#FF5252] text-white rounded-full"
             onClick={() => onSelect(selectedGoal.id)}
+            className="px-12 py-6 text-lg rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 hover:from-orange-500 hover:via-pink-600 hover:to-purple-600 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
-            GO
+            Go
           </Button>
         </div>
-      )}
+      </div>
     </div>
   );
 }

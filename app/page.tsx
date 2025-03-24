@@ -43,12 +43,20 @@ export default function Home() {
                 The only place on the web to browse for Open Source software projects that advance the world's biggest goals. 17 UN Sustainable Development Goals to choose from.
               </p>
               <div className="text-2xl font-medium text-gray-800 space-y-2">
-                <p>Contribute to <RotatingText /> by building solutions.</p>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center">
+                    Contribute to{" "}
+                    <span className="inline-block w-[400px] mx-2 border-b border-gray-300">
+                      <RotatingText />
+                    </span>
+                  </div>
+                  <div>by building solutions</div>
+                </div>
               </div>
             </div>
             <Button 
               size="lg"
-              className="mt-8 text-lg px-8 py-6 rounded-full bg-blue-600 hover:bg-blue-700 text-white"
+              className="mt-8 text-lg px-8 py-6 rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 hover:from-orange-500 hover:via-pink-600 hover:to-purple-600 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
               onClick={() => setCurrentView('selector')}
             >
               Get Started
@@ -80,7 +88,9 @@ export default function Home() {
                   <Badge
                     key={goal.id}
                     variant={selectedSDGs.includes(goal.id) ? "default" : "outline"}
-                    className="cursor-pointer text-sm py-1 px-3"
+                    className={`cursor-pointer text-sm py-1 px-3 ${
+                      goal.name.length > 30 ? 'text-xs' : 'text-sm'
+                    }`}
                     style={{
                       backgroundColor: selectedSDGs.includes(goal.id) ? goal.color : "transparent",
                       borderColor: goal.color,

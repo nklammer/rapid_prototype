@@ -1,34 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { SDG_GOALS } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { useState, useEffect } from 'react';
+import { SDG_GOALS } from '@/lib/data';
 
 export function RotatingText() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentIndex((current) => (current + 1) % SDG_GOALS.length);
-        setIsAnimating(false);
-      }, 500);
+      setIndex((current) => (current + 1) % SDG_GOALS.length);
     }, 3000);
-
     return () => clearInterval(interval);
   }, []);
 
+  const goal = SDG_GOALS[index];
+  const textSize = goal.name.length > 30 ? 'text-lg' : 'text-2xl';
+
   return (
-    <span
-      className={cn(
-        "inline-block transition-all duration-500",
-        isAnimating && "opacity-0 transform -translate-y-4"
-      )}
-      style={{ color: SDG_GOALS[currentIndex].color }}
+    <span 
+      className={`${textSize} font-medium transition-all duration-500`}
+      style={{ color: goal.color }}
     >
-      {SDG_GOALS[currentIndex].name}
+      {goal.name}
     </span>
   );
 }

@@ -19,3 +19,4 @@ The application expects icon files to follow this naming pattern:
 ## Source
 The official UN SDG icons can be downloaded from the United Nations website:
 https://www.un.org/sustainabledevelopment/news/communications-material/
+

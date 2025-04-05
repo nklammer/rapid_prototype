@@ -37,6 +37,7 @@ get more than 1300 page visits
 ### Requirements
 #### Backend
 Data Schema
+**P0**
 * Project Name: {string which is the GitHub repo name}
 * SDG Tag Type List: {a list of types SDG1 | SDG2 | ... | SDG17}
 * Technology Type: {python | tailwind | etc.}
@@ -44,6 +45,10 @@ Data Schema
 * Applicable Geographic Area Type: {Global | Oceania | North American | ...}
 * Subject Matter Type List: {a list of types Climate | Public Health | ...}
 
+**P1**
+* Stars (GitHub metric): {int which is the GitHub repo # stars pulled from API}
+* Contributors (GitHub metric): {int which is the GitHub repo # contributors pulled from API}
+* Last Update (GitHub metric): {date string e.g., "2024-03-15" pulled from API}
 
 ### Prior Art
 

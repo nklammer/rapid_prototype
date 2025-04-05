@@ -1,21 +1,44 @@
 "use client";
 
-import { useState } from "react";
-import { SDG_GOALS, PROJECTS } from "@/lib/data";
+import { useState, useEffect } from "react";
+import { SDG_GOALS } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { ProjectCard } from "@/components/ui/project-card";
 import { Button } from "@/components/ui/button";
 import { RotatingText } from "@/components/ui/rotating-text";
 import { SDGSelector } from "@/components/ui/sdg-selector";
+import type { Project } from "@/lib/types";
 
 export default function Home() {
   const [selectedSDGs, setSelectedSDGs] = useState<number[]>([]);
   const [currentView, setCurrentView] = useState<'landing' | 'selector' | 'projects'>('landing');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const response = await fetch('/api/projects');
+        if (!response.ok) throw new Error('Failed to load projects');
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        // Fallback to static data from lib/data if API fails
+        const { PROJECTS } = await import('@/lib/data');
+        setProjects(PROJECTS);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadProjects();
+  }, []);
 
   const filteredProjects = selectedSDGs.length > 0
-    ? PROJECTS.filter(project => 
+    ? projects.filter(project => 
         project.sdgs.some(sdg => selectedSDGs.includes(sdg)))
-    : PROJECTS;
+    : projects;
 
   const toggleSDG = (sdgId: number) => {
     setSelectedSDGs(current =>
@@ -104,11 +127,15 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center py-12">Loading projects...</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

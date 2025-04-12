@@ -1,5 +1,25 @@
 id,name,description,repoUrl,sdgs,tags,stars,contributors,lastUpdate
-1,OpenSourceWater,"Open-source water quality monitoring and management system for communities",https://github.com/example/open-source-water,"6,3,11","Python,IoT,Data Analysis",1200,45,2024-03-15
-2,SolarConnect_test,"This is a test of the CSV file system operations",https://github.com/example/solar-connect,"7,1,13","JavaScript,React,Node.js",850,32,2024-03-10
-3,EduShare,"Collaborative platform for sharing educational resources globally",https://github.com/example/edu-share,"4,10","TypeScript,Next.js,MongoDB",2100,78,2024-03-18
-4,FoodWaste,"App connecting food businesses with charities to reduce waste",https://github.com/example/food-waste,"2,12","React Native,Firebase",1500,55,2024-03-12
+1,OpenSourceWater,Test. Open-source water quality monitoring and management system for communities,https://github.com/example/open-source-water,"6,3,11","Python,IoT,Data Analysis",1200,45,2024-03-15
+2,SolarConnect,Test. This is a test of the CSV file system operations,https://github.com/example/solar-connect,"7,1,13","JavaScript,React,Node.js",850,32,2024-03-10
+3,EduShare,Test. Collaborative platform for sharing educational resources globally,https://github.com/example/edu-share,"4,10","TypeScript,Next.js,MongoDB",2100,78,2024-03-18
+4,FoodWaste,Test. App connecting food businesses with charities to reduce waste,https://github.com/example/food-waste,"2,12","React Native,Firebase",1500,55,2024-03-12
+5,,,https://github.com/NREL/resstock,"11,13",,,,
+6,,,https://github.com/pvlib/pvlib-python,"7,11,13",,,,
+7,,,https://github.com/codeforboston/home-energy-analysis-tool,"11,13",,,,
+8,,,https://github.com/codeforboston/urban-league-heat-pump-accelerator,"1,10,11,13",,,,
+9,,,https://github.com/OceanParcels/parcels,14,,,,
+10,,,https://github.com/NREL/Industry-Energy-Tool,12,,,,
+11,,Clean Water,https://github.com/USEPA/EPANET2.2,6,Pascal,,,
+12,,,https://github.com/open-environment/open-waters,6,,,,
+13,,Hunger,,2,,,,
+14,,Health,,3,,,,
+15,,Quality Education,,4,,,,
+16,,Gender Equality,,5,,,,
+17,,Reduce Inequalities,,10,,,,
+18,,"Peace, Justice, Strong Institutions",https://github.com/Call-for-Code-for-Racial-Justice/Five-Fifths-Voter,16,,,,
+19,,Life on Land,https://github.com/OpenCollarTeam/OpenCollar,15,,,,
+20,,Climate Action,,13,,,,
+21,,Decent Work and Economic Growth,,8,,,,
+22,,"Industry, Innovation, and Infrastructure",https://github.com/3MFConsortium/lib3mf,9,,,,
+23,,No Poverty,,1,,,,
+24,,,https://github.com/brightway-lca/ecoinvent_interface,12,,,,

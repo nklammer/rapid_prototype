@@ -55,8 +55,16 @@ Data Schema
 * [The Proton Types Open Sustainable Technology directory.](https://github.com/protontypes/open-sustainable-technology)
 A directory and analysis of the open source ecosystem in the areas of climate change, sustainable energy, biodiversity and natural resources.
 
+* Climate.triage (spun out from Proton Types OSTD)
 
-* There was an Indian woman who was building a project in Next.js for projects similar to the Sidelist project on Bubble.io [placeholder link]()
+* Linux Foundation is supporting SDGs
+
+* IBM's Call for Code
+
+* Code for Boston
+
+* ecosyte.ms
+Tools and datasets to support OSS (has an API query tool on its OSS dataset)
 
 ## Goals
 * Get experience with modern web apps, the most scalable way to spread initiatives/businesses
